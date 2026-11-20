@@ -1,4 +1,4 @@
-import { bodyOf, deadLetters, json, policies, type Policy } from "./_lib/store";
+import { bodyOf, deadLetters, json, policies } from "./_lib/store";
 type Input = { policyId?:string; targetUpstream?:string; failRatePct?:number; payload?:unknown; replayDeadLetterId?:string };
 function delayFor(base:number, attempt:number, mode:string) { const cap=Math.min(30000,base*2**(attempt-1)); if(mode==="none") return cap; if(mode==="equal") return Math.round(cap/2+Math.random()*cap/2); return Math.round(Math.random()*cap); }
 export default async function handler(req:Request):Promise<Response> {
